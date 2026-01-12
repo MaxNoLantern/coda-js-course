@@ -11,16 +11,22 @@
 // Exemple de retour : "[14:35:22]"
 
 function obtenirHorodatage() {
-  // Votre code ici
+  const now = new Date();
+  const hour = now.getHours();
+  const minute = now.getMinutes();
+  const second = now.getSeconds();
+
+  return `[${hour}:${minute}:${second}]`;
 }
 
 // ===================================
 // PARTIE 2 : CRÉATION DU PROXY CONSOLE
 // ===================================
 
-// ===================================
-// PARTIE 3 : MISE EN PLACE DU PROXY
-// ===================================
+const oldLog = console.log;
+console.log = (message) => {
+  oldLog(`${obtenirHorodatage()} ${message}`);
+};
 
 // ===================================
 // TESTS
