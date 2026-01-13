@@ -7,30 +7,28 @@
 // PARTIE 1 : FONCTION D'HORODATAGE
 // ===================================
 
-// TODO : Créer une fonction qui retourne l'heure actuelle au format HH:MM:SS
-// Exemple de retour : "[14:35:22]"
-
 function obtenirHorodatage() {
-  // Votre code ici
+    const now = new Date();
+    const heures = String(now.getHours()).padStart(2, "0");
+    const minutes = String(now.getMinutes()).padStart(2, "0");
+    const secondes = String(now.getSeconds()).padStart(2, "0");
+    return `[${heures}:${minutes}:${secondes}]`;
 }
 
 // ===================================
-// PARTIE 2 : CRÉATION DU PROXY CONSOLE
+// PARTIE 2 : ENCAPSULATION DE CONSOLE.LOG
 // ===================================
 
-// ===================================
-// PARTIE 3 : MISE EN PLACE DU PROXY
-// ===================================
+const oldLog = console.log;
+
+console.log = (message) => {
+    oldLog(`${obtenirHorodatage()} ${message}`);
+};
 
 // ===================================
 // TESTS
 // ===================================
 
-// Test de la méthode log
 console.log("Ceci est un message d'information");
-
-// Test de la méthode warn
 console.warn("Attention, ceci est un avertissement");
-
-// Test de la méthode error
 console.error("Une erreur s'est produite");

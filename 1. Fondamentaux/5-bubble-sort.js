@@ -18,8 +18,13 @@
 // Cette fonction ne modifie pas le tableau directement
 
 function echanger(tableau, index1, index2) {
-  // Votre code ici
+    const copy = [...tableau];
+
+    copy[index1] = tableau[index2]
+    copy[index2] = tableau[index1];
+    return copy;
 }
+
 
 // ===================================
 // PARTIE 2 : TRI À BULLE - VERSION BASIQUE
@@ -30,7 +35,22 @@ function echanger(tableau, index1, index2) {
 // Return : le tableau trié
 
 function triABulle(tableau) {
-  // Votre code ici
+    // Faire une copie pour ne pas modifier l'original
+    let currentTab = [...tableau];
+    const length = currentTab.length;
+
+    // Boucle principale : répéter le processus
+    for (let i = 0; i < length; i++) {
+        // Boucle interne : comparer chaque paire adjacente
+        for (let j = 0; j < length - 1; j++) {
+            if (currentTab[j] > currentTab[j + 1]) {
+                // Échanger les éléments si mal placés
+                currentTab = echanger(currentTab, j, j + 1);
+            }
+        }
+    }
+
+    return currentTab;
 }
 
 // ===================================
@@ -41,7 +61,7 @@ function triABulle(tableau) {
 // (cela signifie que le tableau est déjà trié)
 
 function triABulleOptimise(tableau) {
-  // Votre code ici
+    // Votre code ici
 }
 
 // ===================================
